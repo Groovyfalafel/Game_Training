@@ -15,7 +15,13 @@ font = pygame.font.Font("8-bit Arcade In.ttf", 50)  # default font, size 50
 show_message = False
 message_timer = 0
 map_data = open("map.txt", "r")
-map = map_data.readlines()
+map = []
+
+for i in map_data:
+    i = i.strip()
+    if i != "":
+        row = [int(x) for x in i.split()]
+        map.append(row)
 
 # player in the middle
 # player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)

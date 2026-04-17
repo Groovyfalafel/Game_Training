@@ -18,6 +18,8 @@ map_data = open("map.txt", "r")
 map = []
 grass = pygame.image.load("grass.png")
 
+
+# Read map properly
 for i in map_data:
     i = i.strip()
     if i != "":
@@ -75,6 +77,8 @@ while running:
     if message_timer <= 0:
         show_message = False
 
+
+    # Display screen based on tile 0 = water, 1 = grass etc.
     for y in range(len(map)):
         for x in range(len(map[y])):
             if map[y][x] == 1:

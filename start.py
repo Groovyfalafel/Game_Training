@@ -16,6 +16,7 @@ show_message = False
 message_timer = 0
 map_data = open("map.txt", "r")
 map = []
+grass = pygame.image.load("grass.png")
 
 for i in map_data:
     i = i.strip()
@@ -52,6 +53,11 @@ while running:
                 Player.dash_cooldown = 5
             elif event.key == pygame.K_LSHIFT and Player.dash_cooldown >= 0:
                 show_message = True
+                
+
+    # Keep reseting screen
+    screen.fill((0, 0, 0))
+
 
     if Player.dash_cooldown > 0:
         Player.dash_cooldown -= dt
@@ -69,9 +75,13 @@ while running:
     if message_timer <= 0:
         show_message = False
 
+    for y in range(len(map)):
+        for x in range(len(map[y])):
+            if map[y][x] == 1:
+                screen.blit(grass, (x * 32, y * 32))
                 
-    # fill the screen with a  color to wipe away anything from last frame
-    screen.fill("black")
+    
+    
     # print wait message
     if (show_message):
         cooldown_text = font.render(f"WAIT {round(Player.dash_cooldown)} SECONDS", True, (255, 0, 0))

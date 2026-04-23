@@ -17,6 +17,7 @@ message_timer = 0
 map_data = open("map.txt", "r")
 map = []
 grass = pygame.image.load("grass.png")
+water = pygame.image.load("water.png")
 
 
 # Read map properly
@@ -83,6 +84,8 @@ while running:
         for x in range(len(map[y])):
             if map[y][x] == 1:
                 screen.blit(grass, (x * 32, y * 32))
+            elif map[y][x] == 0:
+                screen.blit(water, (x * 32, y * 32))
                 
     
     
